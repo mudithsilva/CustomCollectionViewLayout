@@ -19,6 +19,9 @@ class CustomCollectionViewLayout: UICollectionViewLayout {
     var contentSize: CGSize = .zero
 
     override func prepare() {
+        super.prepare()
+        self.itemAttributes = [[UICollectionViewLayoutAttributes]]()
+        
         guard let collectionView = collectionView else {
             return
         }
