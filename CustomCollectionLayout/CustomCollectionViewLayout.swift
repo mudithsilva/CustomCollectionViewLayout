@@ -11,12 +11,22 @@ import UIKit
 class CustomCollectionViewLayout: UICollectionViewLayout {
 
     let numberOfColumns = 8
+//     var numberOfColumns: Int {
+//        get {
+//            return UserAccessTemp.tabularViewColums
+//        }
+//     }
     var shouldPinFirstColumn = true
     var shouldPinFirstRow = true
 
     var itemAttributes = [[UICollectionViewLayoutAttributes]]()
     var itemsSize = [CGSize]()
     var contentSize: CGSize = .zero
+    
+//     for reload layout -> use this on parent view controller
+//         self.collectionView.reloadData()
+//         self.collectionView.collectionViewLayout.invalidateLayout()
+//         self.collectionView.setContentOffset(CGPoint(x:0,y:0), animated: true)
 
     override func prepare() {
         super.prepare()
