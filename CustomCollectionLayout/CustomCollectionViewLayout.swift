@@ -118,6 +118,7 @@ extension CustomCollectionViewLayout {
                 let indexPath = IndexPath(item: index, section: section)
                 let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height).integral
+//                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: self.sizeForItemWithColumnHeight(rowIndex: section)).integral
 
                 if section == 0 && index == 0 {
                     // First cell should be on top
@@ -151,6 +152,7 @@ extension CustomCollectionViewLayout {
                     column = 0
                     xOffset = 0
                     yOffset += itemSize.height
+//                     yOffset += self.sizeForItemWithColumnHeight(rowIndex: section)
                 }
             }
 
@@ -184,6 +186,27 @@ extension CustomCollectionViewLayout {
         let size: CGSize = text.size(attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14.0)])
         let width: CGFloat = size.width + 16
         return CGSize(width: width, height: 30)
+        
+//         change cell width (For Columns)
+//         if columnIndex == 0 {
+//             return CGSize(width: 220, height:70)
+//         } else {
+//             return CGSize(width: 100, height: 70)
+//         }
+    }
+    
+     func sizeForItemWithColumnHeight(rowIndex: Int) -> CGFloat {
+//          Get paranet data from a temp file and refresh cell height
+        var cellHeight: CGFloat = 0
+        
+        if AppViewParams.tabularViewController.tableData[rowIndex].rowType == .Header {
+            cellHeight = 70.0
+        } else if AppViewParams.tabularViewController.tableData[rowIndex].rowType == .GroupTitle {
+            cellHeight = 40.0
+        } else {
+            cellHeight = 60.0
+        }
+        return cellHeight
     }
 
 }
